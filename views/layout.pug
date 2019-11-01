@@ -1,0 +1,57 @@
+doctype html
+
+html
+head
+    title shop
+    link(rel='stylesheet' href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet' href='/css/style.css')
+body
+    nav.navbar.navbar-inverse
+        .container
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbars', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') shop
+            #navbars.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href='/') Home 
+                    if user                           
+                        li
+                            a(href='/articles/add') Add Article                    
+                    li.dropdown
+                        a#dropdown01.nav-link.dropdown-toggle(href='http://example.com', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                        .dropdown-menu(aria-labelledby='dropdown01')
+                            a.dropdown-item(href='#') Action
+                            a.dropdown-item(href='#') Another action
+                            a.dropdown-item(href='#') Something else here
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href='/chart') Chart
+                    if user                
+                        li 
+                            a(href='/user/logout') Logout
+                    else
+                        li
+                            a(href='/user/register') Register
+                        li
+                            a(href='/user/login') Login  
+
+    .container
+        != messages('message', locals)
+        if(errors)
+            each error in errors
+                div(class="alert alert-danger") #{error.msg}
+        block content
+    br
+    hr
+
+    footer
+        p Copyright &copy; 2017
+script(src = '/bower_components/jquery/dist/jquery.js')
+script(src = '/bower_components/bootstrap/dist/js/bootstrap.js')
+script(src = '/js/main.js')
+

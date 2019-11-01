@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 #{title}
+    br
+    ul.list-group
+        each category in categories
+            li.list-group-item
+                h3 #{category.name}
+                br
+                p #{category.page_description}
+                img(src='/image/'+category.image alt='')               
+                br
+                br
+                a(class='btn btn-default' ,href='/category/'+category.parent_category_id+'/'+category.id) View products
